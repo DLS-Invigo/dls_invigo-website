@@ -1,0 +1,114 @@
+backend:
+  name: github
+  repo: DLS-Invigo/dls_invigo-website
+  branch: main
+
+# Voor lokaal testen zonder GitHub authenticatie
+# local_backend: true
+
+media_folder: public/uploads
+public_folder: /uploads
+
+# Taal instelling
+locale: 'nl'
+
+collections:
+  # ============================================
+  # BANNERS (Homepage slider)
+  # ============================================
+  - name: banners
+    label: "🖼️ Banners (Slider)"
+    label_singular: "Banner"
+    folder: content/banners
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titel", name: "title", widget: "string", hint: "De titel die op de banner getoond wordt" }
+      - { label: "Afbeelding", name: "image", widget: "image", hint: "Upload een grote banner afbeelding (min. 1920x1080)" }
+      - { label: "Beschrijving", name: "description", widget: "text", required: false, hint: "Korte tekst onder de titel (optioneel)" }
+      - { label: "Link", name: "link", widget: "string", required: false, hint: "Link naar een pagina of artikel (optioneel)" }
+
+  # ============================================
+  # NIEUWS
+  # ============================================
+  - name: nieuws
+    label: "📰 Nieuws"
+    label_singular: "Nieuwsbericht"
+    folder: content/nieuws
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    sortable_fields: ['date', 'title']
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - { label: "Datum", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false }
+      - { label: "Afbeelding", name: "image", widget: "image", hint: "Upload een afbeelding voor dit artikel" }
+      - { label: "Korte samenvatting", name: "excerpt", widget: "text", required: false, hint: "Korte tekst voor het overzicht (optioneel)" }
+      - { label: "Inhoud", name: "body", widget: "markdown", hint: "De volledige tekst van het artikel" }
+      - { label: "Externe link", name: "externalLink", widget: "string", required: false, hint: "Link naar externe website (optioneel)" }
+
+  # ============================================
+  # RENNERS
+  # ============================================
+  - name: renners
+    label: "🚴 Renners"
+    label_singular: "Renner"
+    folder: content/renners
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Naam", name: "naam", widget: "string" }
+      - { label: "Foto", name: "foto", widget: "image", hint: "Upload een foto van de renner" }
+      - { label: "Leeftijd", name: "leeftijd", widget: "number", required: false, min: 1, max: 100 }
+      - { label: "Categorie", name: "categorie", widget: "select", options: ["Elite", "Beloften", "Junioren", "Nieuwelingen", "Jeugd"], hint: "In welke categorie rijdt deze renner?" }
+      - { label: "Beschrijving", name: "beschrijving", widget: "text", required: false, hint: "Korte beschrijving of palmares (optioneel)" }
+
+  # ============================================
+  # PARTNERS
+  # ============================================
+  - name: partners
+    label: "🤝 Partners"
+    label_singular: "Partner"
+    folder: content/partners
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Naam", name: "title", widget: "string" }
+      - { label: "Logo", name: "image", widget: "image", hint: "Upload het logo van de partner (bij voorkeur op witte achtergrond)" }
+      - { label: "Beschrijving", name: "description", widget: "text", required: false }
+      - { label: "Website", name: "link", widget: "string", required: false, hint: "Link naar de website van de partner (optioneel)" }
+
+  # ============================================
+  # FOTOALBUMS
+  # ============================================
+  - name: fotoalbums
+    label: "📷 Fotoalbums"
+    label_singular: "Fotoalbum"
+    folder: content/fotoalbums
+    create: true
+    slug: "{{year}}-{{month}}-{{slug}}"
+    fields:
+      - { label: "Titel", name: "title", widget: "string", hint: "Naam van het album (bijv. 'Kermiskoers Mechelen 2024')" }
+      - { label: "Datum", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false }
+      - { label: "Cover afbeelding", name: "coverImage", widget: "image", required: false, hint: "Wordt getoond in het overzicht (optioneel - anders wordt eerste foto gebruikt)" }
+      - { label: "Beschrijving", name: "description", widget: "text", required: false }
+      - label: "Foto's"
+        name: "images"
+        widget: "list"
+        field: { label: "Afbeelding", name: "image", widget: "image" }
+        hint: "Voeg alle foto's toe aan dit album"
+
+  # ============================================
+  # HOMEPAGE INSTELLINGEN
+  # ============================================
+  - name: homepage
+    label: "⚙️ Homepage instellingen"
+    files:
+      - name: settings
+        label: "Homepage"
+        file: content/homepage/settings.md
+        fields:
+          - { label: "Highlight titel", name: "highlightTitle", widget: "string", required: false, hint: "Titel voor de highlight sectie op de homepage" }
+          - { label: "Highlight beschrijving", name: "highlightDescription", widget: "text", required: false }
+          - { label: "Highlight afbeelding", name: "highlightImage", widget: "image", required: false }
+          - { label: "Highlight link", name: "highlightLink", widget: "string", required: false }
+          - { label: "Team foto", name: "teamImage", widget: "image", required: false, hint: "Grote teamfoto voor op de homepage" }
