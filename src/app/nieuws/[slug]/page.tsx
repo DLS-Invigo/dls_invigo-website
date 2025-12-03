@@ -17,8 +17,8 @@ export async function generateStaticParams() {
 // Metadata voor SEO
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const item = getCollectionItem('nieuws', slug)
-  
+  const item = getCollectionItem('nieuws', slug) as any
+
   if (!item) {
     return { title: 'Niet gevonden | DLS Invigo' }
   }
