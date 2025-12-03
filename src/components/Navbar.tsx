@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 
@@ -22,9 +23,15 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
-            <span className="text-2xl font-bold text-white">
-              DLS <span className="text-primary">INVIGO</span>
-            </span>
+            <div className="relative w-24 h-16">
+              <Image
+                src="/uploads/logo.png"
+                alt="DLS Invigo Logo"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
           </Link>
 
           {/* Desktop navigatie */}

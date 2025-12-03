@@ -13,8 +13,8 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const item = getCollectionItem('fotoalbums', slug)
-  
+  const item = getCollectionItem('fotoalbums', slug) as any
+
   if (!item) {
     return { title: 'Niet gevonden | DLS Invigo' }
   }
