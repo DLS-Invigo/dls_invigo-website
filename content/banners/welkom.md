@@ -1,6 +1,6 @@
 ---
-title: Welkom bij DLS Invigo
+title: Welkom bij DLS Invigo Mechelen
 image: /uploads/placeholder.jpg
-description: De wielerploeg met passie voor de koers
+description: Wielerclub met hart en ziel uit Mechelen
 link: /team
 ---

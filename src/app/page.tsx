@@ -12,10 +12,10 @@ export const revalidate = 60
 
 export default function HomePage() {
   // Haal alle content op
-  const banners = getCollection('banners')
+  const banners = getCollection('banners') as any[]
   const nieuwsItems = sortByDate(getCollection('nieuws')).slice(0, 3)
-  const partners = getCollection('partners')
-  const homepage = getSingleton('homepage/settings')
+  const partners = getCollection('partners') as any[]
+  const homepage = getSingleton('homepage/settings') as any
 
   return (
     <>
